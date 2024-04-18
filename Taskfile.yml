@@ -1,0 +1,65 @@
+version: '3'
+
+env:
+  ENV: local
+
+dotenv: ['.env', '.env.{{.ENV}}']
+
+tasks:
+
+  default:
+    cmds:
+      - task --list-all
+
+  docker-build:
+    cmds:
+      - docker build -t foundry-rs .
+
+  docker-run:
+    cmds:
+      - docker run -it --rm -v $(pwd):/home/foundryuser/app -v foundry_lib:/home/foundryuser/app/lib -v /home/foundryuser/app/out -v /home/foundryuser/app/cache --user foundryuser foundry-rs bash
+
+  install:
+    cmds:
+      - forge install --no-git foundry-rs/forge-std
+      - forge install --no-git OpenZeppelin/openzeppelin-contracts
+      - forge install --no-git Cyfrin/foundry-devops
+
+  anvil:
+    cmds:
+      - anvil --block-time 10
+
+  assets-deploy:
+    dir: assets
+    cmds:
+      - aws s3 sync . {{.ASSETS_S3}}/rochers --exclude "*" --include "*.png" --include "*.json"
+
+  contracts-build:
+    cmds:
+      - forge fmt
+      - forge build
+
+  contracts-test:
+    cmds:
+      - forge test -vvv --gas-report
+
+  contracts-deploy:
+    dir: script
+    cmds:
+      - forge script --rpc-url {{.RPC_URL}}
+                     --account {{.KEYSTORE_ACCOUNT}}
+                     --sender {{.PUBLIC_KEY}}
+                     --broadcast
+                     --password-file "../.password"
+                     --legacy
+                     DeployRochers
+
+  mint:
+    dir: script
+    cmds:
+      - forge script --rpc-url {{.RPC_URL}}
+                     --account {{.KEYSTORE_ACCOUNT}}
+                     --sender {{.PUBLIC_KEY}}
+                     --broadcast
+                     --password-file "../.password"
+                     Interactions.s.sol:MintRochers
