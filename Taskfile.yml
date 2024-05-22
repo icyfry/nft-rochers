@@ -1,0 +1,52 @@
+version: '3'
+
+env:
+  ENV: local
+
+dotenv: ['.env', '.env.{{.ENV}}']
+
+tasks:
+
+  default:
+    cmds:
+      - task --list-all
+
+  anvil:
+    cmds:
+      - anvil --block-time 10
+
+  assets-deploy:
+    dir: assets
+    cmds:
+      - aws s3 sync . {{.ASSETS_S3}}/rochers --exclude "*" --include "*.png" --include "*.json"
+
+  contracts-build:
+    dir: contracts
+    cmds:
+      - forge fmt
+      - forge build
+
+  contracts-test:
+    dir: contracts
+    cmds:
+      - forge test -vvv --gas-report
+
+  contracts-deploy:
+    dir: script
+    cmds:
+      - forge script --rpc-url {{.RPC_URL}}
+                     --account {{.KEYSTORE_ACCOUNT}}
+                     --sender {{.PUBLIC_KEY}}
+                     --broadcast
+                     --password-file "../.password"
+                     DeployRocher
+
+  mint:
+    dir: script
+    cmds:
+      - forge script --rpc-url {{.RPC_URL}}
+                     --account {{.KEYSTORE_ACCOUNT}}
+                     --sender {{.PUBLIC_KEY}}
+                     --broadcast
+                     --password-file "../.password"
+                     Interactions.s.sol:MintRocherNft
