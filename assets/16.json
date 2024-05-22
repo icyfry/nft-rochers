@@ -1,0 +1,15 @@
+{
+    "name": "Satisfaction",
+    "description": "Rochers",
+    "image": "https://nft.icyfry.io/rochers/16.png",
+    "attributes": [
+        {
+            "trait_type": "ref",
+            "value": "Satisfaction"
+        },
+        {
+            "trait_type": "size",
+            "value": "20x20"
+        }
+    ]
+}

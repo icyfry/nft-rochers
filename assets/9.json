@@ -1,0 +1,15 @@
+{
+    "name": "Respiration",
+    "description": "Rochers",
+    "image": "https://nft.icyfry.io/rochers/9.png",
+    "attributes": [
+        {
+            "trait_type": "ref",
+            "value": "Respiration"
+        },
+        {
+            "trait_type": "size",
+            "value": "20x20"
+        }
+    ]
+}
