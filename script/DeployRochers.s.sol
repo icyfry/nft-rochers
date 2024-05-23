@@ -3,18 +3,18 @@
 pragma solidity 0.8.20;
 
 import {Script} from "forge-std/Script.sol";
-import {Rocher} from "../src/Rocher.sol";
+import {Rochers} from "../src/Rochers.sol";
 import {console} from "forge-std/console.sol";
 
-contract DeployRocher is Script {
-    function run() external returns (Rocher) {
+contract DeployRochers is Script {
+    function run() external returns (Rochers) {
         return runWithOwner(msg.sender);
     }
 
-    function runWithOwner(address user) public returns (Rocher) {
+    function runWithOwner(address user) public returns (Rochers) {
         vm.startBroadcast(user);
-        Rocher rocher = new Rocher();
+        Rochers rochers = new Rochers();
         vm.stopBroadcast();
-        return rocher;
+        return rochers;
     }
 }

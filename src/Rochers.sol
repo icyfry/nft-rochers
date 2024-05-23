@@ -4,11 +4,11 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract Rocher is ERC721 {
+contract Rochers is ERC721 {
     uint256 public constant COLLECTION_SIZE = 19;
     address public owner;
 
-    constructor() ERC721("Rocher", "RCH") {
+    constructor() ERC721("Rochers", "RCH") {
         owner = msg.sender;
     }
 
@@ -21,5 +21,9 @@ contract Rocher is ERC721 {
         for (uint256 i = 1; i <= COLLECTION_SIZE; i++) {
             _safeMint(to, i);
         }
+    }
+
+    function totalSupply() public pure returns (uint256) {
+        return COLLECTION_SIZE;
     }
 }
