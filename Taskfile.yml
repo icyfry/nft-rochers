@@ -39,6 +39,7 @@ tasks:
                      --sender {{.PUBLIC_KEY}}
                      --broadcast
                      --password-file "../.password"
+                     --legacy
                      DeployRocher
 
   mint:
@@ -49,4 +50,5 @@ tasks:
                      --sender {{.PUBLIC_KEY}}
                      --broadcast
                      --password-file "../.password"
+                     --legacy
                      Interactions.s.sol:MintRocherNft
