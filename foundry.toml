@@ -1,9 +1,10 @@
 [profile.default]
+solc = "0.8.26"
 src = "src"
 out = "out"
 libs = ["lib"]
 fs_permissions = [
-    { access = "read", path = "./assets/" },
+    { access = "read", path = "./assets" },
     { access = "read", path = "./broadcast" },
 ]
 remappings=["@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/"]
