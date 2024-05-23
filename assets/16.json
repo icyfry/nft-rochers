@@ -1,11 +1,14 @@
 {
     "name": "Satisfaction",
-    "description": "Rochers",
+    "description": "The symbolism of the rock has various aspects, including the more obvious is that of immobility, of the immutable",
     "image": "https://nft.icyfry.io/rochers/16.png",
     "attributes": [
         {
-            "trait_type": "ref",
-            "value": "Satisfaction"
+            "value": "sold"
+        },
+        {
+            "trait_type": "medium",
+            "value": "Acrylic on paper"
         },
         {
             "trait_type": "size",

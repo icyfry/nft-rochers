@@ -1,11 +1,11 @@
 {
     "name": "Phénoménal",
-    "description": "Rochers",
+    "description": "The symbolism of the rock has various aspects, including the more obvious is that of immobility, of the immutable",
     "image": "https://nft.icyfry.io/rochers/15.png",
     "attributes": [
         {
-            "trait_type": "ref",
-            "value": "Phénoménal"
+            "trait_type": "medium",
+            "value": "Acrylic on paper"
         },
         {
             "trait_type": "size",
